@@ -1,6 +1,13 @@
-import { css } from 'emotion';
+import { css, injectGlobal } from 'emotion';
+
+injectGlobal`
+  *{
+    box-sizing: border-box;
+  }
+`
 
 export const Container = css`
+  box-sizing: border-box;
   padding: 0 15px;
   width: 100%;
 `;

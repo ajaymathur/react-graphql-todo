@@ -1,37 +1,13 @@
 import React, { Component } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import TodoRow from './components/taskRow';
 import { Container, Task as _taskStyles, TaskStatus } from './Todo.styles';
-
-export const allTasksQuery = gql`
-{
-  allTasks {
-    _id
-    task
-    Status
-  }
-}
-`;
-
-export const removeTaskMutation = gql`
-mutation($id: String!){
-  removeTodo(todo: {_id: $id}) {
-    task
-    Status
-    _id
-  }
-}
-`;
-
-export const updateTaskMutation = gql`
-mutation($id: String, $task: String, $Status: String) {
-  updateTodo(todo: { _id: $id, task: $task, Status: $Status }) {
-    _id
-    task
-    Status
-  }
-}
-`;
+import {
+  allTasksQuery,
+  removeTaskMutation,
+  updateTaskMutation
+} from './gqlQueries';
 
 class App extends Component {
   render() {
@@ -57,8 +33,8 @@ class App extends Component {
                   <div className={Container}>
                     {
                       data.allTasks && data.allTasks.map(task => (
-                        <div key={task._id}>
-                          <div className={_taskStyles}>
+                        <TodoRow removeTask={removeTask} todo={task} key={task._id}>
+                          {/* <div className={_taskStyles}>
                             {task.task}
                           </div>
                           <div className={TaskStatus}>
@@ -73,8 +49,8 @@ class App extends Component {
                                 )
                               }
                             </Mutation>
-                          </div>
-                        </div>
+                          </div> */}
+                        </TodoRow>
                       ))
                     }
                   </div>
