@@ -18,7 +18,6 @@ const resolvers = {
       return Todo.find({});
     },
     updateTodo(_, { todo }) {
-      console.log(todo)
       Todo.findByIdAndUpdate(todo._id, { task: todo.task, Status: todo.Status }, () => {});
       return todo;
     }

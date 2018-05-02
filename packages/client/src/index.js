@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
 import gql from 'graphql-tag';
 import { ApolloProvider } from 'react-apollo';
-import './index.css';
+
 import Todo from './Todo';
 import Footer from './Footer';
 import registerServiceWorker from './registerServiceWorker';
