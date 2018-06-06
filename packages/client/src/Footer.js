@@ -1,14 +1,14 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from "react";
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 
-import AddTask from './components/addTask';
-import { allTasksQuery, ADD_TODO_QUERY } from './gqlQueries';
+import AddTask from "./components/addTask";
+import { allTasksQuery, ADD_TODO_QUERY } from "./gqlQueries";
 
-export default class Footer extends Component{
+export default class Footer extends Component {
   render() {
     return (
-      <Mutation 
+      <Mutation
         mutation={ADD_TODO_QUERY}
         update={(cache, { data: { addTodo } }) => {
           const { allTasks } = cache.readQuery({ query: allTasksQuery });
@@ -19,12 +19,8 @@ export default class Footer extends Component{
           });
         }}
       >
-      {
-        (addTodo, { data }) => (
-          <AddTask addTodo={addTodo} />
-        )
-      }
+        {(addTodo, { data }) => <AddTask addTodo={addTodo} />}
       </Mutation>
-    )
+    );
   }
 }
